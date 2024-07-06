@@ -17,6 +17,7 @@ html, body, #root {
 }
 .container{
   display: flex;
+  flex-direction: row;
   flex-wrap: nowrap;
   /* justify-content: center;
   align-items: center;
@@ -61,4 +62,26 @@ html, body, #root {
   color: white;
   font-size: 15px;
   transition: 0.3s;
+}
+
+@media screen and (max-width: 768px) {
+
+  .container{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+    
+  }
+
+  .box1{
+    width:100%;
+  }
+  
+  .box2{
+    width: 100%;
+    height: calc(90vh-20px);
+  }
+  
 }
