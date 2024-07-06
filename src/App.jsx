@@ -1,6 +1,6 @@
 // App.js
 import React, { useState } from 'react';
-import { ChakraProvider, Box, Heading, Center, extendTheme } from '@chakra-ui/react';
+import { ChakraProvider, Box, Heading, Center, extendTheme, Image } from '@chakra-ui/react';
 import CodeEditor from './CodeEditor';
 import Login from './Login';
 import { Toaster } from 'react-hot-toast';
@@ -25,7 +25,7 @@ const App = () => {
   return (
     <ChakraProvider theme={theme}>
 
-      <Toaster/>
+      <Toaster />
 
       {login ?
         <div className='login'>
@@ -34,7 +34,13 @@ const App = () => {
         :
         <Box p={4}>
           <Center mb={4}>
-            <Heading>Real-time Code Editor</Heading>
+            <div className='logo'>
+
+
+              <Image src="xcode.png" boxSize="100px" alt="" srcset="" />
+
+              <Heading>X-Code Editor</Heading>
+            </div>
           </Center>
           <CodeEditor roomid={roomid} username={username} />
         </Box>

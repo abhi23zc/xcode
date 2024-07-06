@@ -11,13 +11,14 @@ import { executeCode } from './api.js';
 import { ref, onValue, set } from 'firebase/database';
 import { database } from './firebaseConfig';
 import { ColorRing } from 'react-loader-spinner';
+import { CODE_SNIPPETS } from './constants.js';
 // import { Spinner } from '@chakra-ui/react/dist/index.js';
 
 
 const CodeEditor = ({ username, roomid }) => {
-    const [code, setCode] = useState('');
+    const [code, setCode] = useState(CODE_SNIPPETS.javascript);
     const [language, setLanguage] = useState('javascript');
-    const [output, setOutput] = useState('hey how are you');
+    const [output, setOutput] = useState('Run Your Code......');
     const toast = useToast();
 
     const [loading, setloading] = useState(false)
@@ -72,8 +73,7 @@ const CodeEditor = ({ username, roomid }) => {
                 return python();
             case 'java':
                 return java();
-            case 'cpp':
-                return cpp();
+    
             default:
                 return javascript();
         }
@@ -87,16 +87,33 @@ const CodeEditor = ({ username, roomid }) => {
                 <VStack spacing={4} align="stretch" p={4}>
                     <Select
                         value={language}
-                        onChange={(e) => setLanguage(e.target.value)}
+                        onChange={(e) => {
+                            setLanguage(e.target.value)
+                            console.log(e.target.value)
+                            switch (e.target.value) {
+                                case 'javascript':
+                                    return setCode(CODE_SNIPPETS.javascript)
+                                case 'python':
+                                    return setCode(CODE_SNIPPETS.python)
+                                case 'java':
+                                    return setCode(CODE_SNIPPETS.java)
+                
+                                default:
+                                    return setCode(CODE_SNIPPETS.javascript)
+                            }
+                            
+                        }
+                        }
                         bg="gray.700"
                         color="white"
                         borderColor="gray.600"
                         _hover={{ borderColor: 'gray.500' }}
                     >
                         <option value="javascript">JavaScript</option>
+                    
                         <option value="python">Python</option>
                         <option value="java">Java</option>
-                        <option value="cpp">C/C++</option>
+                       
                     </Select>
                     <Box
                         border="1px"

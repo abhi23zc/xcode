@@ -46,3 +46,19 @@ html, body, #root {
   justify-content: center;
   align-items: center;
 }
+
+.generate{
+
+  font-size: 13px;
+  color: #eee;
+  text-align:end ;
+  padding: 5px;
+  cursor: pointer;
+
+}
+
+.generate:hover{
+  color: white;
+  font-size: 15px;
+  transition: 0.3s;
+}
